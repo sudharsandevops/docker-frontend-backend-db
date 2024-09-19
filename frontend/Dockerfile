@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -6,7 +6,7 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 # install application dependencies
 COPY package*.json ./
-RUN npm install -g npm@latest
+#RUN npm install -g npm@latest
 RUN npm install
 # RUN npm install react-scripts -g
 
