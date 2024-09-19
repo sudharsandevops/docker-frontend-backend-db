@@ -1,38 +1,16 @@
-version: "3.8"
+version: '3.8'
+
 services:
-  web:
-    build: ./frontend
-    depends_on:
-      - api
+  backend:
+    image: 026090538055.dkr.ecr.ap-south-1.amazonaws.com/sampleapp/backend:latest
     ports:
-      - "3000:3000"
-    networks:
-      - network-backend
-  api:
-    build: ./backend
-    depends_on:
-      - mongo
+      - "5000:5000"  # Map backend port
+    environment:
+      - ENV_VAR_NAME=value  # Add any necessary environment variables
+
+  frontend:
+    image: 026090538055.dkr.ecr.ap-south-1.amazonaws.com/sampleapp/frontend:latest
     ports:
-      - "3001:3001"
-    networks: 
-     - network-backend
-  
-  mongo:
-    image: mongo
-    restart: always
-    volumes: 
-      - mongodb_data:/data/db
-    environment: 
-      MONGODB_INITDB_ROOT_USERNAME: username
-      MONGODB_INITDB_ROOT_PASSWORD: password
-    # uncomment following lines to access db locally
-    # ports:
-    #   - 27017:27017
-    networks: 
-     - network-backend
-
-networks:
-  network-backend:
-
-volumes: 
-  mongodb_data:
+      - "3000:3000"  # Map frontend port
+    environment:
+      - ENV_VAR_NAME=value  # Add any necessary environment variables
