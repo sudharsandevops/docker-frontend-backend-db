@@ -2,8 +2,6 @@ version: "3.8"
 services:
   web:
     image: 026090538055.dkr.ecr.ap-south-1.amazonaws.com/sampleapp/frontend:latest
-    depends_on:
-      - api
     ports:
       - "3000:3000"
     networks:
@@ -11,13 +9,10 @@ services:
 
   api:
     image: 026090538055.dkr.ecr.ap-south-1.amazonaws.com/sampleapp/backend:latest
-    depends_on:
-      - web
     ports:
       - "3001:3001"
-    networks: 
+    networks:
       - network-backend
 
 networks:
   network-backend:
-
